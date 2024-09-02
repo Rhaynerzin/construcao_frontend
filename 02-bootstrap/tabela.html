@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de Contatos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilo adicional para o cabeçalho azul */
+        .table-custom-header th {
+            background-color: #add8e6; /* Azul claro */
+            color: black;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <table class="table table-bordered">
+            <thead class="table-custom-header">
+                <tr>
+                    <th rowspan="2">Nome</th>
+                    <th colspan="2">Contatos</th>
+                    <th colspan="3">Endereços</th>
+                </tr>
+                <tr>
+                    <th>Telefone</th>
+                    <th>Email</th>
+                    <th>CEP</th>
+                    <th>UF</th>
+                    <th>Cidade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Pedro Arthur</td>
+                    <td>(61)985124022</td>
+                    <td>pedro@teste.com</td>
+                    <td>72.200-315</td>
+                    <td>DF</td>
+                    <td>Ceilândia</td>
+                </tr>
+                <tr>
+                    <td>Alisson Santos</td>
+                    <td>(61)987456314</td>
+                    <td>a.santos@teste.com</td>
+                    <td>45.280-620</td>
+                    <td>GO</td>
+                    <td>Águas Lindas</td>
+                </tr>
+                <tr>
+                    <td>Ronaldo Avelino</td>
+                    <td>(61)985476015</td>
+                    <td>Ronaldo.avelino@teste.com</td>
+                    <td>72.350-458</td>
+                    <td>DF</td>
+                    <td>Ceilândia</td>
+                </tr>
+                <tr>
+                    <td>Pedro Paulo</td>
+                    <td>(61)984780512</td>
+                    <td>pedro@teste.com</td>
+                    <td>42.200-711</td>
+                    <td>BA</td>
+                    <td>Salvador</td>
+                </tr>
+                <tr>
+                    <td>Lucas Alves</td>
+                    <td>(61)980221405</td>
+                    <td>lucasalves@teste.com</td>
+                    <td>32.500-311</td>
+                    <td>SP</td>
+                    <td>São Paulo</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
