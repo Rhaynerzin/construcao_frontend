@@ -1,9 +1,13 @@
-import React from 'react'
 
 export default function NumeroAleatorio() {
+
+  const numeroAleatorio = Math.floor(Math.random() * 1000) + 1
+
+
   return (
-    <div>
-      
-    </div>
-  )
+      <>
+          <h2>Número Aleatorio</h2>
+          <p>{numeroAleatorio}</p>
+      </>
+)
 }
