@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import UserCard from '../components/UserCard';
-import api from '../utils/api';
+import UserCard from '../componentes/UserCard';
+import api from '../utilidades/api';
 
 export default function Home() {
   const [users, setUsers] = useState([]);

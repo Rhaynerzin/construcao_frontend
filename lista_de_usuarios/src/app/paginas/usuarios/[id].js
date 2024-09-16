@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import api from '../../utils/api';
+import api from '../utilidades/api.js';
 
 export default function UserDetails() {
   const router = useRouter();
