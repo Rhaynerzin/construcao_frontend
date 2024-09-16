@@ -1,37 +1,41 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, Row, Col } from 'react-bootstrap';
+import { Card, ListGroup, Container, Row, Col } from 'react-bootstrap';
 
 export default function Home() {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await axios.get('https://dummyjson.com/users');
-      setUsers(response.data.users);
-    };
-
-    fetchUsers();
+    axios.get('https://dummyjson.com/users')
+      .then(response => {
+        setUsers(response.data.users);
+      })
+      .catch(error => {
+        console.error("Erro ao buscar usuários:", error);
+      });
   }, []);
 
   return (
-    <div className="container mt-4">
-      <h1>Lista de Usuários</h1>
+    <Container>
+      <h1 className="my-4">Lista de Usuários</h1>
       <Row>
         {users.map(user => (
           <Col md={4} key={user.id} className="mb-4">
             <Card>
-              <Card.Img variant="top" src={user.image} />
+              <Card.Img variant="top" src={user.image} alt={`${user.firstName} ${user.lastName}`} />
               <Card.Body>
-                <Card.Title>{user.firstName} {user.lastName}</Card.Title>
-                <Card.Text>
-                  Idade: {user.age}
-                </Card.Text>
+                <Card.Title>
+                  <Link href={`/user/${user.id}`}>
+                    {user.firstName} {user.lastName}
+                  </Link>
+                </Card.Title>
+                <Card.Text>Idade: {user.age}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
         ))}
       </Row>
-    </div>
+    </Container>
   );
 }
