@@ -1,9 +1,10 @@
-import Pagina from '@/components/Pagina'
+import Pagina from "@/components/Pagina";
 
-export default function page () {
+export default function HomePage() {
   return (
-    <Pagina titulo="Pagina Inicial">
-      <h1>Home page</h1>
+    <Pagina titulo="Página Inicial">
+      <p>Home Page</p>
+
     </Pagina>
-  )
+  );
 }
