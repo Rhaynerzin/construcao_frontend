@@ -2,25 +2,59 @@
 
 import Pagina from "@/components/Pagina";
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, CardImg, Form, Modal } from "react-bootstrap";
 import { FaCheck } from "react-icons/fa";
 
 
 export default function ImcPage() {
+
+  const [showModal, setShowModal] = useState(false)
 
   const [nome, setNome] = useState('')
   const [genero, setGenero] = useState('')
   const [peso, setPeso] = useState('0')
   const [altura, setAltura] = useState('0.0')
 
+  const [imc, setImc] = useState(0)
+  const [classificacao, setClassificacao] = useState('')
+
   function calcular(event) {
     event.preventDefault()
-    console.log({ nome, genero, peso, altura })
+
+    const pesoNumerico = Number(peso)
+    const alturaNumerico = Number(altura)
+
+    console.log({ nome, genero, pesoNumerico, alturaNumerico })
+
+    const resultadoIMC = (pesoNumerico / (alturaNumerico * alturaNumerico)).toFixed(1)
+
+    setImc(resultadoIMC)
+
+    if (imc < 18.5) {
+      setClassificacao('Abaixo do peso')
+    } else if (imc >= 18.5 && imc < 24.9) {
+      setClassificacao('Peso Normal')
+    } else if (imc >= 25 && imc < 29.9) {
+      setClassificacao('Sobrepeso')
+    } else if (imc >= 30 && imc < 35) {
+      setClassificacao('Obesidade Grau I')
+    } else if (imc >= 35) {
+      setClassificacao('Obesidade Morbida')
+    }
+
+    console.log({ imc, classificacao })
+
+    setShowModal(true)
 
   }
 
   return (
     <Pagina titulo="Calculadora de IMC">
+
+      {/* Imagem da tabela do IMC */}
+      <div>
+        <CardImg src="/imc/imc.png" />
+      </div>
 
       {/* Formulário */}
       <Form onSubmit={calcular}>
@@ -81,6 +115,24 @@ export default function ImcPage() {
         </Form.Group>
 
       </Form>
+
+      {/* Modal do Resultado */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Resultado</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>O seu imc é {imc}</p>
+          <p>Sua classificação é {classificacao}</p>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)} >
+            Fechar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+
 
     </Pagina>
   )
