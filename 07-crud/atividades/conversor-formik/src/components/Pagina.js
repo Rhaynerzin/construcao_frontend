@@ -1,6 +1,6 @@
 'use client'
 
-import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap"
+import { Container, Nav, Navbar} from "react-bootstrap"
 
 
 export default function Pagina({ titulo, children }) {
@@ -11,7 +11,7 @@ export default function Pagina({ titulo, children }) {
       <Navbar bg="dark" data-bs-theme="dark">
         <Container>
           <Navbar.Brand href="/">Home</Navbar.Brand>
-          <Navbar.Brand href="/conversor-formik">Conversor</Navbar.Brand>
+          <Navbar.Brand href="/conversor">Conversor</Navbar.Brand>
           <Nav className="me-auto">
           </Nav>
         </Container>
