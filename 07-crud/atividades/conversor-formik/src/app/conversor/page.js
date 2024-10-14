@@ -8,9 +8,9 @@ import { FaCheck, FaTrashAlt } from 'react-icons/fa';
 import { formatCurrency } from '@/utils/formatCurrency';
 
 const TAXAS_DE_CAMBIO = {
-  dolar: 5.58, 
-  euro: 6.11, 
-  bitcoin: 352.473, 
+  dolar: 0.18, 
+  euro: 0.16, 
+  bitcoin: 0.000003, 
 };
 
 export default function page() {
