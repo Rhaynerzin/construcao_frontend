@@ -9,9 +9,9 @@ export default function Page() {
   const [resultado, setResultado] = useState('');
 
   const valoresConversao = {
-    dolar: [5.58],
-    euro: [6.10],
-    bitcoin: [352.625],
+    dolar: [0.18],
+    euro: [0.16],
+    bitcoin: [0.000003],
   };
 
   const converterMoeda = () => {
