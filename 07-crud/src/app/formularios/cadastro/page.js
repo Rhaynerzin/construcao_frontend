@@ -14,13 +14,45 @@ export default function CadastroPage() {
 
   const initialValues = {
     nome: '',
-    sobrenome: ''
+    sobrenome: '',
+    email: '',
+    dataNascimento: '',
+    telefone: '',
+    endereco: {
+        cep: '',
+        logradouro: '',
+        numero: '',
+        complemento: '',
+        bairro: '',
+        cidade: '',
+        uf: ''
+    },
+    faculdade: '',
+    curso: '',
+    periodo: '',
+    matricula: ''
   }
 
   const validationSchema = Yup.object().shape({
     nome: Yup.string().required("O campo nome é obrigatório!"),
-    sobrenome: Yup.string().required("O campo sobrenome é obrigatório")
-  })
+    sobrenome: Yup.string().required("O campo sobrenome é obrigatório"),
+    email: Yup.string().email("E-mail inválido").required("Campo é obrigatório"),
+    dataNascimento: Yup.date("Data inválida").required("Campo é obrigatório"),
+    telefone: Yup.string().required("Campo é obrigatório"),
+    endereco: {
+        cep: '',
+        logradouro: '',
+        numero: '',
+        complemento: '',
+        bairro: '',
+        cidade: '',
+        uf: ''
+    },
+    faculdade: '',
+    curso: '',
+    periodo: '',
+    matricula: ''
+})
 
   return (
     <Pagina titulo={"Cadastro de Aluno"}>
