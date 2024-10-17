@@ -100,7 +100,7 @@ export default function CadastroImovel() {
             </Form.Group>
 
             <Form.Group as={Col}>
-              <Form.Label>CPF:</Form.Label>
+              <Form.Label>CPF/CNPJ:</Form.Label>
               <Form.Control
                 name='proprietario.cpf'
                 type='text'
