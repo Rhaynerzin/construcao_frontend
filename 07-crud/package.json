@@ -9,20 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "axios": "^1.7.7",
-    "bootstrap": "^5.3.3",
-    "formik": "^2.4.6",
-    "next": "14.2.7",
     "react": "^18",
-    "react-bootstrap": "^2.10.5",
     "react-dom": "^18",
-    "react-icons": "^5.3.0",
-    "react-input-mask": "^2.0.4",
-<<<<<<< HEAD
-    "uuid": "^10.0.0",
-=======
->>>>>>> 7309e4a4160dc0b597326a4529fa7214900e4821
-    "wid": "^0.0.9",
-    "yup": "^1.4.0"
+    "next": "14.2.15"
   }
 }
