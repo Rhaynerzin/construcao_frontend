@@ -51,7 +51,7 @@ export default function DisciplinaFormPage(props) {
   const initialValues = {
     nome: '',
     descricao: '',
-    status: 'ativo',
+    status: '',
     curso: '',
     professor: ''
   }
@@ -76,7 +76,7 @@ export default function DisciplinaFormPage(props) {
           <Form onSubmit={handleSubmit}>
 
             <Row className='mb-2'>
-              <Form.Group as={Col} md={2}>
+              <Form.Group as={Col}>
                 <Form.Label>Nome:</Form.Label>
                 <Form.Control
                   name='nome'
@@ -91,8 +91,8 @@ export default function DisciplinaFormPage(props) {
               </Form.Group>
             </Row>
 
-            <Row className='mb-3'>
-              <Form.Group as={Col} md={3}>
+            <Row className='mb-2'>
+              <Form.Group as={Col}>
                 <Form.Label>Descrição:</Form.Label>
                 <Form.Control
                   name='descricao'
@@ -119,8 +119,9 @@ export default function DisciplinaFormPage(props) {
                   isValid={touched.status && !errors.status}
                   isInvalid={touched.status && errors.status}
                 >
-                  <option value="ativo">Ativo</option>
-                  <option value="inativo">Inativo</option>
+                  <option value=''>Selecione</option>
+                  <option value="Ativo">Ativo</option>
+                  <option value="Inativo">Inativo</option>
                 </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.status}</Form.Control.Feedback>
               </Form.Group>
