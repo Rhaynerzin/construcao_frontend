@@ -12,10 +12,10 @@ export default function AlunosPage() {
   // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
-    const alunos = JSON.parse(localStorage.getItem("alunos")) || []
+    const alunosLocalStorage = JSON.parse(localStorage.getItem("alunos")) || []
     // guarda a lista no estado alunos
-    setAlunos(alunos)
-    console.log(alunos)
+    setAlunos(alunosLocalStorage)
+    console.log(alunosLocalStorage)
   }, [])
 
   // Função para exclusão do item
@@ -53,7 +53,8 @@ export default function AlunosPage() {
           </tr>
         </thead>
         <tbody>
-          {alunos.map(aluno => (
+          {alunos.map(aluno => {
+            return (
             <tr key={aluno.id}>
               <td>
                 {aluno.foto ? (
@@ -73,7 +74,8 @@ export default function AlunosPage() {
                 <Button variant='danger' onClick={() => excluir(aluno)}><FaTrash /></Button>
               </td>
             </tr>
-          ))}
+            )
+        })}
         </tbody>
       </Table>
     </Pagina>

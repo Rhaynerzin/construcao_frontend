@@ -10,6 +10,7 @@ import * as Yup from 'yup'
 import { useState } from 'react'
 
 export default function AlunoFormPage(props) {
+
   const router = useRouter()
 
   // Recupera faculdades e cursos do localStorage
@@ -72,13 +73,15 @@ export default function AlunoFormPage(props) {
   })
 
   return (
-    <Pagina titulo="Cadastro de Aluno">
+    <Pagina titulo={"Cadastro de Aluno"}>
       <Formik
         initialValues={alunoEditado || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
-      >
-        {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => (
+        >
+        {({ values, errors, touched, handleChange, handleBlur, handleSubmit }) => {
+          
+          return (
           <Form onSubmit={handleSubmit}>
             <Row className='mb-2'>
               <Form.Group as={Col}>
@@ -110,6 +113,7 @@ export default function AlunoFormPage(props) {
               </Form.Group>
             </Row>
 
+            {/* Outros campos: Email, Data de Nascimento, Telefone */}
             <Row className='mb-2'>
               <Form.Group as={Col}>
                 <Form.Label>Email:</Form.Label>
@@ -140,6 +144,7 @@ export default function AlunoFormPage(props) {
               </Form.Group>
             </Row>
 
+            {/* Telefone e Matrícula */}
             <Row className='mb-2'>
               <Form.Group as={Col}>
                 <Form.Label>Telefone:</Form.Label>
@@ -172,6 +177,7 @@ export default function AlunoFormPage(props) {
               </Form.Group>
             </Row>
 
+            {/* Faculdade e Curso */}
             <Row className='mb-2'>
               <Form.Group as={Col}>
                 <Form.Label>Faculdade:</Form.Label>
@@ -209,6 +215,7 @@ export default function AlunoFormPage(props) {
               </Form.Group>
             </Row>
 
+            {/* Foto */}
             <Form.Group className='mb-2'>
               <Form.Label>Foto (URL):</Form.Label>
               <Form.Control
@@ -226,12 +233,17 @@ export default function AlunoFormPage(props) {
               )}
             </Form.Group>
 
+            {/* Botões */}
             <Form.Group className='text-end'>
               <Button className='me-2' href='/alunos'><FaArrowLeft /> Voltar</Button>
               <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
             </Form.Group>
+          
           </Form>
-        )}
+          )
+        }
+      }
+
       </Formik>
     </Pagina>
   )
