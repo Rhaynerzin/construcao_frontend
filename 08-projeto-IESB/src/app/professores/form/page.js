@@ -178,7 +178,7 @@ export default function ProfessorFormPage(props) {
 
                 {/* botões */}
                 <Form.Group className='text-end'>
-                  <Button className='me-2' href='/faculdades'><FaArrowLeft /> Voltar</Button>
+                  <Button className='me-2' href='/professores'><FaArrowLeft /> Voltar</Button>
                   <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
                 </Form.Group>
 
