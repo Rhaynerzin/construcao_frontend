@@ -156,9 +156,7 @@ export default function DisciplinaFormPage(props) {
                   isInvalid={touched.professor && errors.professor}
                 >
                   <option value=''>Selecione</option>
-                  {professoresFiltrados.map(prof => (
-                    <option key={prof.id} value={prof.nome}>{prof.nome}</option>
-                  ))}
+                  {professoresFiltrados.map(prof => <option key={prof.id} value={prof.nome}>{prof.nome}</option>)}
                 </Form.Select>
                 <Form.Control.Feedback type='invalid'>{errors.professor}</Form.Control.Feedback>
               </Form.Group>
