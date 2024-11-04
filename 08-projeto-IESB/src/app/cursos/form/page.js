@@ -206,7 +206,7 @@ export default function CursoFormPage(props) {
 
                 {/* botões */}
                 <Form.Group className='text-end'>
-                  <Button className='me-2' href='/faculdades'><FaArrowLeft /> Voltar</Button>
+                  <Button className='me-2' href='/cursos'><FaArrowLeft /> Voltar</Button>
                   <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
                 </Form.Group>
 
