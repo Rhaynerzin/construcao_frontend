@@ -1,11 +1,12 @@
 'use client'
 
+
 import Pagina from '@/components/Pagina'
 import { useEffect, useState } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { FaPen, FaPlusCircle, FaTrash } from 'react-icons/fa'
 
-export default function CleintesPage() {
+export default function ClientesPage() {
 
   const [clientes, setClientes] = useState([])
 
@@ -13,24 +14,25 @@ export default function CleintesPage() {
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
     const clientesLocalStorage = JSON.parse(localStorage.getItem("clientes")) || []
-    // guarda a lista no estado clientes
-    setClientes(clientesLocalStorage)
+    // guarda a lista no estado faculdades
+    setCursos(clientesLocalStorage)
     console.log(clientesLocalStorage)
   }, [])
 
   // Função para exclusão do item
   function excluir(cliente) {
     // Confirma com o usuário a exclusão
-    if (window.confirm(`Deseja realmente excluir o cliente ${cliente.nome} ${cliente.sobrenome}?`)) {
-      // filtra a lista antiga removando o funcionário recebido
+    if (window.confirm(`Deseja realmente excluir o cliente ${cliente.nome}?`)) {
+      // filtra a lista antiga removando o curso recebido
       const novaLista = clientes.filter(item => item.id !== cliente.id)
       // grava no localStorage a nova lista
       localStorage.setItem('clientes', JSON.stringify(novaLista))
       // grava a nova lista no estado para renderizar na tela
-      setClientes(novaLista)
+      setCursos(novaLista)
       alert("Cliente excluído com sucesso!")
     }
   }
+
 
   return (
     <Pagina titulo={"Lista de Clientes"}>
@@ -45,32 +47,36 @@ export default function CleintesPage() {
             <th>CPF</th>
             <th>Nome</th>
             <th>Sobrenome</th>
-            <th>Endereço</th>
             <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Cidade</th>
             <th>Status</th>
-
-            <th></th>
+            <th>Faculdade</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {clientes.map(cliente => {
+          {cursos.map(curso => {
             return (
-            
-              
-              <td>{funcionario.cpf}</td>
-              <td>{funcionario.nome}</td>
-              <td>{funcionario.sobrenome}</td>
-              <td>{funcionario.endereco}</td>
-              <td>{funcionario.turno === 'manha' ? 'Manhã' : funcionario.turno === 'tarde' ? 'Tarde' : 'Noite'}</td>
-              <td className='text-center'>
-                <Button className='me-2' href={`/funcionarios/form?id=${funcionario.id}`}><FaPen /></Button>
-                <Button variant='danger' onClick={() => excluir(funcionario)}><FaTrash /></Button>
-              </td>
+              <tr>
+                <td>{curso.nome}</td>
+                <td>{curso.area}</td>
+                <td>{curso.nota}</td>
+                <td>{curso.status}</td>
+                <td>{curso.faculdade}</td>
+                <td className='text-center'>
+                  {/* Botões das ações */}
+                  <Button className='me-2' href={`/cursos/form?id=${curso.id}`}><FaPen /></Button>
+                  <Button variant='danger' onClick={() => excluir(curso)}><FaTrash /></Button>
+                </td>
+              </tr>
             )
           })}
         </tbody>
       </Table>
+
+
+
     </Pagina>
   )
 }
