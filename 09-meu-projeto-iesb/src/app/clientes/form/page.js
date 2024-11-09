@@ -2,7 +2,7 @@
 
 import Pagina from '@/components/Pagina'
 import { Formik } from 'formik'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { FaArrowLeft, FaCheck } from "react-icons/fa"
 import {ReactInputMask} from 'react-input-mask';
@@ -17,7 +17,8 @@ export default function ClienteFormPage(props) {
   const clientes = JSON.parse(localStorage.getItem('clientes')) || []
 
   // Recupera o id para edição (se houver)
-  const id = props.searchParams?.id
+  const searchParams = useSearchParams(props);
+  const id = searchParams.get('id');
   const clienteEditado = clientes.find(item => item.id === id)
 
   // Função para salvar os dados do formulário
@@ -162,25 +163,6 @@ export default function ClienteFormPage(props) {
                     isInvalid={touched.endereco && errors.endereco}
                   />
                   <Form.Control.Feedback type='invalid'>{errors.endereco}</Form.Control.Feedback>
-                </Form.Group>
-              </Row>
-
-              <Row className='mb-2'>
-                <Form.Group as={Col}>
-                  <Form.Label>Status:</Form.Label>
-                  <Form.Select
-                    name='status'
-                    value={values.status}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.status && !errors.status}
-                    isInvalid={touched.status && errors.status}
-                  >
-                    <option value=''>Selecione</option>
-                    <option value='Ativo'>Ativo</option>
-                    <option value='Inativo'>Inativo</option>
-                  </Form.Select>
-                  <Form.Control.Feedback type='invalid'>{errors.status}</Form.Control.Feedback>
                 </Form.Group>
               </Row>
 

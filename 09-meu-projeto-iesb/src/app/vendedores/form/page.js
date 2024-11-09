@@ -2,37 +2,38 @@
 
 import Pagina from '@/components/Pagina'
 import { Formik } from 'formik'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { Button, Col, Form, Row } from 'react-bootstrap'
 import { FaArrowLeft, FaCheck } from "react-icons/fa"
 import {ReactInputMask} from 'react-input-mask';
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-export default function FuncionarioFormPage(props) {
+export default function VendedoresFormPage(props) {
 
   const router = useRouter()
 
   // Recupera funcionários do localStorage
-  const funcionarios = JSON.parse(localStorage.getItem('funcionarios')) || []
+  const vendedores = JSON.parse(localStorage.getItem('vendedores')) || []
 
   // Recupera o id para edição (se houver)
-  const id = props.searchParams?.id
-  const funcionarioEditado = funcionarios.find(item => item.id === id)
+  const searchParams = useSearchParams(props);
+  const id = searchParams.get('id');
+  const vendedorEditado = vendedores.find(item => item.id === id)
 
   // Função para salvar os dados do form
   function salvar(dados) {
-    if (funcionarioEditado) {
-      Object.assign(funcionarioEditado, dados)
-      localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
+    if (vendedorEditado) {
+      Object.assign(vendedorEditado, dados)
+      localStorage.setItem('vendedores', JSON.stringify(vendedores))
     } else {
       dados.id = v4()
-      funcionarios.push(dados)
-      localStorage.setItem('funcionarios', JSON.stringify(funcionarios))
+      vendedores.push(dados)
+      localStorage.setItem('vendedores', JSON.stringify(vendedores))
     }
 
-    alert("Funcionário cadastrado com sucesso!")
-    router.push("/funcionarios")
+    alert("Vendedor cadastrado com sucesso!")
+    router.push("/vendedores")
   }
 
   // Valores iniciais do formulário
@@ -60,9 +61,9 @@ export default function FuncionarioFormPage(props) {
   })
 
   return (
-    <Pagina titulo={"Cadastro de Funcionário"}>
+    <Pagina titulo={"Cadastro de Vendedor"}>
       <Formik
-        initialValues={funcionarioEditado || initialValues}
+        initialValues={vendedorEditado || initialValues}
         validationSchema={validationSchema}
         onSubmit={salvar}
       >
@@ -178,25 +179,6 @@ export default function FuncionarioFormPage(props) {
                   <Form.Control.Feedback type='invalid'>{errors.endereco}</Form.Control.Feedback>
                 </Form.Group>
               </Row>
-
-              <Row className='mb-2'>
-                <Form.Group as={Col}>
-                  <Form.Label>Turno:</Form.Label>
-                  <Form.Select
-                    name='turno'
-                    value={values.turno}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.turno && !errors.turno}
-                    isInvalid={touched.turno && errors.turno}
-                  >
-                    <option value=''>Selecione</option>
-                    <option value='manha'>Manhã</option>
-                    <option value='tarde'>Tarde</option>
-                  </Form.Select>
-                  <Form.Control.Feedback type='invalid'>{errors.turno}</Form.Control.Feedback>
-                </Form.Group>
-              </Row>
               
               <Form.Group className='mb-2'>
                 <Form.Label>Foto (URL):</Form.Label>
@@ -211,13 +193,13 @@ export default function FuncionarioFormPage(props) {
                 />
                 <Form.Control.Feedback type='invalid'>{errors.foto}</Form.Control.Feedback>
                 {values.foto && !errors.foto && (
-                  <img src={values.foto} alt="Foto do funcionário" style={{ maxWidth: '200px', marginTop: '10px' }} />
+                  <img src={values.foto} alt="Foto do vendedor" style={{ maxWidth: '200px', marginTop: '10px' }} />
                 )}
               </Form.Group>
 
               {/* Botões */}
               <Form.Group className='text-end'>
-                <Button className='me-2' href='/funcionarios'><FaArrowLeft /> Voltar</Button>
+                <Button className='me-2' href='/vendedores'><FaArrowLeft /> Voltar</Button>
                 <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
               </Form.Group>
             </Form>

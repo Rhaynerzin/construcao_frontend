@@ -13,9 +13,9 @@ export default function ClientesPage() {
   // Faz alguma coisa quando o usuário acessa a tela
   useEffect(() => {
     // Busca a lista do localStorage, se não existir, inicia uma vazia
-    const clientesLocalStorage = JSON.parse(localStorage.getItem("clientes")) || []
+    const clientesLocalStorage = JSON.parse(localStorage.getItem('clientes')) || []
     // guarda a lista no estado faculdades
-    setCursos(clientesLocalStorage)
+    setClientes(clientesLocalStorage)
     console.log(clientesLocalStorage)
   }, [])
 
@@ -37,7 +37,7 @@ export default function ClientesPage() {
   return (
     <Pagina titulo={"Lista de Clientes"}>
       <div className='text-end mb-2'>
-        <Button href='/clientes/form'><FaPlusCircle /> Novo</Button>
+        <Button href='/clientes/form'><FaPlusCircle /> Novo Cliente</Button>
       </div>
 
       {/* Tabela com os Clientes */}
@@ -48,26 +48,27 @@ export default function ClientesPage() {
             <th>Nome</th>
             <th>Sobrenome</th>
             <th>Telefone</th>
+            <th>E-mail</th>
             <th>Endereço</th>
             <th>Cidade</th>
-            <th>Status</th>
-            <th>Faculdade</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
-          {cursos.map(curso => {
+          {clientes.map(cliente => {
             return (
               <tr>
-                <td>{curso.nome}</td>
-                <td>{curso.area}</td>
-                <td>{curso.nota}</td>
-                <td>{curso.status}</td>
-                <td>{curso.faculdade}</td>
+                <td>{cliente.cpf}</td>
+                <td>{cliente.nome}</td>
+                <td>{cliente.sobrenome}</td>
+                <td>{cliente.telefone}</td>
+                <td>{cliente.email}</td>
+                <td>{cliente.endereco}</td>
+                <td>{cliente.cidade}</td>
                 <td className='text-center'>
                   {/* Botões das ações */}
-                  <Button className='me-2' href={`/cursos/form?id=${curso.id}`}><FaPen /></Button>
-                  <Button variant='danger' onClick={() => excluir(curso)}><FaTrash /></Button>
+                  <Button className='me-2' href={`/clientes/form?id=${cliente.id}`}><FaPen /></Button>
+                  <Button variant='danger' onClick={() => excluir(cliente)}><FaTrash /></Button>
                 </td>
               </tr>
             )
