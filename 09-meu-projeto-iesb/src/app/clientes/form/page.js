@@ -124,6 +124,7 @@ export default function ClientesFormPage(props) {
                     type='text'
                     mask={"999-999-999-99"}
                     placeholder='999-999-999-99'
+                    maxLength={11}
                     value={values.cpf}
                     onChange={handleChange}
                     onBlur={handleBlur}

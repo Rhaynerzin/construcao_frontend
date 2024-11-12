@@ -45,7 +45,7 @@ export default function VendasPage() {
 
   function getVendedorNome(vendedorId) {
     const vendedor = vendedores.find(vendedor => vendedor.id === vendedorId)
-    return vendedor ? `${vendedor.nome}` : "Vendedor não encontrado"
+    return vendedor ? `${vendedor.nome} ${vendedor.sobrenome}` : "Vendedor não encontrado"
   }
 
   return (
@@ -71,7 +71,7 @@ export default function VendasPage() {
               <td>{getClienteNome(venda.cliente)}</td> 
               <td>{getVeiculoModelo(venda.veiculo)}</td>
               <td>{getVendedorNome(venda.vendedor)}</td>
-              <td>{new Date(venda.dataVenda).toLocaleDateString()}</td>
+              <td>{new Date(venda.dataVenda).toLocalDateString()}</td>
               <td>R$ {parseFloat(venda.valorVenda).toFixed(3)}</td>
               <td>{venda.dataEntrega}</td>
               <td className='text-center'>
