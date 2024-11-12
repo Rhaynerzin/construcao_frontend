@@ -10,15 +10,18 @@ export default function VendasPage() {
   const [vendas, setVendas] = useState([])
   const [clientes, setClientes] = useState([])
   const [veiculos, setVeiculos] = useState([])
+  const [vendedores, setVendedores] = useState([])
 
   useEffect(() => {
     const vendasLocalStorage = JSON.parse(localStorage.getItem('vendas')) || []
     const clientesLocalStorage = JSON.parse(localStorage.getItem('clientes')) || []
     const veiculosLocalStorage = JSON.parse(localStorage.getItem('veiculos')) || []
+    const vendedoresLocalStorage = JSON.parse(localStorage.getItem('vendedores')) || []
 
     setVendas(vendasLocalStorage)
     setClientes(clientesLocalStorage)
     setVeiculos(veiculosLocalStorage)
+    setVendedores(vendedoresLocalStorage)
   }, [])
 
   function excluir(venda) {
@@ -41,8 +44,8 @@ export default function VendasPage() {
   }
 
   function getVendedorNome(vendedorId) {
-    const vendedores = veiculos.find(veiculo => veiculo.id === veiculoId)
-    return veiculo ? veiculo.modelo : "Veículo não encontrado"
+    const vendedor = vendedores.find(vendedor => vendedor.id === vendedorId)
+    return vendedor ? `${vendedor.nome}` : "Vendedor não encontrado"
   }
 
   return (
@@ -67,7 +70,7 @@ export default function VendasPage() {
             <tr key={venda.id}>
               <td>{getClienteNome(venda.cliente)}</td> 
               <td>{getVeiculoModelo(venda.veiculo)}</td>
-              <td>{venda.vendedor}</td>
+              <td>{getVendedorNome(venda.vendedor)}</td>
               <td>{new Date(venda.dataVenda).toLocaleDateString()}</td>
               <td>R$ {parseFloat(venda.valorVenda).toFixed(3)}</td>
               <td>{venda.dataEntrega}</td>
