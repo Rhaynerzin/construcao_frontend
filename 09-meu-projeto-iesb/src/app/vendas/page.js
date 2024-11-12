@@ -71,9 +71,9 @@ export default function VendasPage() {
               <td>{getClienteNome(venda.cliente)}</td> 
               <td>{getVeiculoModelo(venda.veiculo)}</td>
               <td>{getVendedorNome(venda.vendedor)}</td>
-              <td>{new Date(venda.dataVenda).toLocalDateString()}</td>
+              <td>{new Date(venda.dataVenda).toLocaleDateString('pt-BR')}</td>
               <td>R$ {parseFloat(venda.valorVenda).toFixed(3)}</td>
-              <td>{venda.dataEntrega}</td>
+              <td>{new Date(venda.dataEntrega).toLocaleDateString('pt-BR')}</td>
               <td className='text-center'>
                 <Button className='me-2' href={`/vendas/form?id=${venda.id}`}><FaPen /></Button>
                 <Button variant='danger' onClick={() => excluir(venda)}><FaTrash /></Button>
