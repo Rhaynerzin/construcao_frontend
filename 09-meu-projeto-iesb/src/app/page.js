@@ -41,7 +41,7 @@ export default function HomePage() {
 
   return (
     <Pagina>
-      <Row md={4}>
+      <Row md={5}>
         {lista.map((item, index) => (
           <Col className='py-2' key={item.id || index}>
             <Card className="bg-primary text-dark" style={{ height: '100%' }}>

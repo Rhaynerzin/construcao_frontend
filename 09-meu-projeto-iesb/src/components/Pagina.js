@@ -10,36 +10,22 @@ export default function Pagina({ children }) {
       {/* Barra de Navegação */}
       <Navbar bg="primary" variant="light" expand="lg">
         <Container>
-          <Navbar.Brand href="/">
-            <FaCarAlt className="me-2" />
-            Paiva's Car
+          <Navbar.Brand href="/"><FaCarAlt className="me-2" /> Paiva's Car
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbar-nav" />
+          <Navbar.Toggle aria-controls="navbar-nav"/>
           <Navbar.Collapse id="navbar-nav">
             <Nav className="ms-auto">
-              <Nav.Link href="/veiculos">
-                <FaClipboardList className="me-2" />
-                Lista de Veículos
+              <Nav.Link href="/veiculos"><FaClipboardList className="me-2" /> Lista de Veículos
               </Nav.Link>
-              <Nav.Link href="/veiculos/form">
-                <FaCarAlt className="me-2" />
-                Novo Veículo
+              <Nav.Link href="/veiculos/form"><FaCarAlt className="me-2" /> Novo Veículo
               </Nav.Link>
-              <Nav.Link href="/vendedores">
-                <FaUserTie className="me-2" />
-                Vendedores
+              <Nav.Link href="/vendedores"><FaUserTie className="me-2" /> Vendedores
               </Nav.Link>
-              <Nav.Link href="/fornecedores">
-                <FaStore className="me-2" />
-                Fornecedores
+              <Nav.Link href="/fornecedores"><FaStore className="me-2" /> Fornecedores
               </Nav.Link>
-              <Nav.Link href="/clientes">
-                <FaUserFriends className="me-2" />
-                Clientes
+              <Nav.Link href="/clientes"><FaUserFriends className="me-2" /> Clientes
               </Nav.Link>
-              <Nav.Link href="/vendas">
-                <FaShoppingCart className="me-2" />
-                Vendas
+              <Nav.Link href="/vendas"><FaShoppingCart className="me-2" /> Vendas
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
