@@ -9,11 +9,11 @@ import {ReactInputMask} from 'react-input-mask';
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-export default function ClienteFormPage(props) {
+export default function ClientesFormPage(props) {
 
   const router = useRouter()
 
-  // Recupera clientes do localStorage
+  // Recupera funcionários do localStorage
   const clientes = JSON.parse(localStorage.getItem('clientes')) || []
 
   // Recupera o id para edição (se houver)
@@ -21,7 +21,7 @@ export default function ClienteFormPage(props) {
   const id = searchParams.get('id');
   const clienteEditado = clientes.find(item => item.id === id)
 
-  // Função para salvar os dados do formulário
+  // Função para salvar os dados do form
   function salvar(dados) {
     if (clienteEditado) {
       Object.assign(clienteEditado, dados)
@@ -42,10 +42,10 @@ export default function ClienteFormPage(props) {
     sobrenome: '',
     telefone: '',
     cpf: '',
+    dataNascimento: '',
     email: '',
     endereco: '',
-    status: '', 
-    cidade: '', 
+    cidade: ''
   }
 
   // Esquema de validação com Yup
@@ -54,10 +54,10 @@ export default function ClienteFormPage(props) {
     sobrenome: Yup.string().required("Campo obrigatório"),
     telefone: Yup.string().required("Campo obrigatório"),
     cpf: Yup.string().required("Campo obrigatório").length(11, "CPF deve ter 11 dígitos"),
+    dataNascimento: Yup.date().required("Campo obrigatório"),
     email: Yup.string().email("Email inválido").required("Campo obrigatório"),
     endereco: Yup.string().required("Campo obrigatório"),
-    status: Yup.string().required("Campo obrigatório"),
-    cidade: Yup.string().required("Campo obrigatório"),
+    cidade: Yup.string().required("Campo obrigatório")
   })
 
   return (
@@ -136,6 +136,20 @@ export default function ClienteFormPage(props) {
 
               <Row className='mb-2'>
                 <Form.Group as={Col}>
+                  <Form.Label>Data de Nascimento:</Form.Label>
+                  <Form.Control
+                    name='dataNascimento'
+                    type='date'
+                    value={values.dataNascimento}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    isValid={touched.dataNascimento && !errors.dataNascimento}
+                    isInvalid={touched.dataNascimento && errors.dataNascimento}
+                  />
+                  <Form.Control.Feedback type='invalid'>{errors.dataNascimento}</Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group as={Col}>
                   <Form.Label>Email:</Form.Label>
                   <Form.Control
                     name='email'
@@ -165,27 +179,24 @@ export default function ClienteFormPage(props) {
                   <Form.Control.Feedback type='invalid'>{errors.endereco}</Form.Control.Feedback>
                 </Form.Group>
               </Row>
-
-              <Row className='mb-2'>
-                <Form.Group as={Col}>
-                  <Form.Label>Cidade:</Form.Label>
-                  <Form.Control
-                    name='cidade'
-                    type='text'
-                    value={values.cidade}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    isValid={touched.cidade && !errors.cidade}
-                    isInvalid={touched.cidade && errors.cidade}
-                 >
-                 </Form.Control>
-                  <Form.Control.Feedback type='invalid'>{errors.cidade}</Form.Control.Feedback>
-                </Form.Group>
-              </Row>
+              
+              <Form.Group className='mb-2'>
+                <Form.Label>Cidade:</Form.Label>
+                <Form.Control
+                  name='cidade'
+                  type='text'
+                  value={values.cidade}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  isValid={touched.cidade && !errors.cidade}
+                  isInvalid={touched.cidade && errors.cidade}
+                />
+                <Form.Control.Feedback type='invalid'>{errors.cidade}</Form.Control.Feedback>
+              </Form.Group>
 
               {/* Botões */}
               <Form.Group className='text-end'>
-                <Button className='me-2' href='/clientes'><FaArrowLeft /> Voltar</Button>
+                <Button className='me-2' href='/vendedores'><FaArrowLeft /> Voltar</Button>
                 <Button type='submit' variant='success'><FaCheck /> Enviar</Button>
               </Form.Group>
             </Form>

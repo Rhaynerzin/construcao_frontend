@@ -56,7 +56,7 @@ export default function FuncionariosPage() {
             <tr key={vendedor.id}>
               <td>
                 {vendedor.foto ? (
-                  <img src={funcionario.foto} alt="Foto do vendedor" style={{ maxWidth: '120px'}} />
+                  <img src={vendedor.foto} alt="Foto do vendedor" style={{ maxWidth: '120px'}} />
                 ) : (
                   <div style={{ width: '80px', height: '80px', backgroundColor: '#f0f0f0', borderRadius: '50%' }}></div>
                 )}

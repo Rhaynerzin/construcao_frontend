@@ -8,7 +8,7 @@ import { FaArrowLeft, FaCheck } from "react-icons/fa"
 import { v4 } from 'uuid'
 import * as Yup from 'yup'
 
-export default function VendaFormPage(props) {
+export default function VendasFormPage(props) {
 
   const router = useRouter()
 
@@ -16,6 +16,7 @@ export default function VendaFormPage(props) {
   const veiculos = JSON.parse(localStorage.getItem('veiculos')) || []
   const clientes = JSON.parse(localStorage.getItem('clientes')) || []
   const vendas = JSON.parse(localStorage.getItem('vendas')) || []
+  const vendedores = JSON.parse(localStorage.getItem('vendedores')) || []
 
   // Recupera o id para edição (se houver)
   const searchParams = useSearchParams(props);
@@ -41,15 +42,19 @@ export default function VendaFormPage(props) {
   const initialValues = {
     cliente: '',
     veiculo: '',
+    vendedor: '',
     dataVenda: '',
-    valorVenda: ''
+    valorVenda: '',
+    dataEntrega: ''
   }
 
   // Esquema de validação com Yup
   const validationSchema = Yup.object().shape({
     cliente: Yup.string().required("Campo obrigatório"),
     veiculo: Yup.string().required("Campo obrigatório"),
+    vendedor: Yup.string().required("Campo Obrigatório"),
     dataVenda: Yup.date().required("Campo obrigatório"),
+    dataEntrega: Yup.date().required("Campo Obrigatório"),
     valorVenda: Yup.number().required("Campo obrigatório").positive("O valor deve ser positivo")
   })
 
@@ -83,7 +88,7 @@ export default function VendaFormPage(props) {
 
               {/* Veiculos */}
               <Form.Group as={Row} className='mb-3'>
-                <Form.Label>Veículos:</Form.Label>
+                <Form.Label>Veículo:</Form.Label>
                   <Form.Select
                     name='veiculo'
                     value={values.veiculo}
@@ -94,6 +99,22 @@ export default function VendaFormPage(props) {
                   >
                     <option value=''>Selecione o Veículo</option>
                     {veiculos.map(veiculo => (<option key={veiculo.id} value={veiculo.id}>{veiculo.marca} {veiculo.modelo} {veiculo.ano}</option>))}
+                  </Form.Select>
+                  <Form.Control.Feedback type='invalid'>{errors.veiculo}</Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group as={Row} className='mb-3'>
+                <Form.Label>Vendedor:</Form.Label>
+                  <Form.Select
+                    name='vendedor'
+                    value={values.vendedor}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    isValid={touched.vendedor && !errors.vendedor}
+                    isInvalid={touched.vendedor && errors.vendedor}
+                  >
+                    <option value=''>Selecione o Vendedor: </option>
+                    {vendedores.map(vendedor => (<option key={vendedor.id} value={vendedor.id}>{vendedor.nome} {vendedor.sobrenome} </option>))}
                   </Form.Select>
                   <Form.Control.Feedback type='invalid'>{errors.veiculo}</Form.Control.Feedback>
               </Form.Group>
@@ -127,6 +148,20 @@ export default function VendaFormPage(props) {
                     isInvalid={touched.valorVenda && errors.valorVenda}
                   />
                   <Form.Control.Feedback type='invalid'>{errors.valorVenda}</Form.Control.Feedback>
+              </Form.Group>
+
+              <Form.Group as={Row} className='mb-3'>
+                <Form.Label>Data de Entrega:</Form.Label>
+                  <Form.Control
+                    name='dataEntrega'
+                    type='date'
+                    value={values.dataEntrega}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    isValid={touched.dataEntrega && !errors.dataEntrega}
+                    isInvalid={touched.dataEntrega && errors.dataEntrega}
+                  />
+                  <Form.Control.Feedback type='invalid'>{errors.dataEntrega}</Form.Control.Feedback>
               </Form.Group>
 
               {/* Botões */}

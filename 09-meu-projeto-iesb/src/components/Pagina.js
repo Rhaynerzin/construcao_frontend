@@ -12,6 +12,7 @@ export default function Pagina({ titulo, children }) {
         <Container>
           <Navbar.Brand href="/">
             <FaCar className="me-2" />
+            Paiva's Car
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar-nav" />
           <Navbar.Collapse id="navbar-nav">
@@ -47,7 +48,7 @@ export default function Pagina({ titulo, children }) {
 
       {/* Barra de Título */}
       <div className="bg-dark text-center text-white py-2">
-        <h1>{"Paiva's Car "}</h1>
+        <h1>{"Paiva's Car"}</h1>
       </div>
 
       {/* Conteúdo da Página */}
