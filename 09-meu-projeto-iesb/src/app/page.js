@@ -47,8 +47,7 @@ export default function HomePage() {
             <Card className="bg-primary text-dark" style={{ height: '100%' }}>
               <Card.Img src={item.imagem} style={{ height: '100%' }} />
               <Card.Body>
-                <Card.Title>{item.nome}</Card.Title>
-                Cadastrados: {item.quantidade}
+                <Card.Title>{item.nome}</Card.Title> Cadastrados: {item.quantidade}
               </Card.Body>
               <Card.Footer className='text-end'>
                 <Button href={item.link} variant="light">Ver Lista</Button>
